@@ -19,15 +19,16 @@ class GoodsList {
         this.sortDir = sortDir;
     }
     get list(){
+        const goods_new = this.goods.filter((good) => good.available==true)
         if (sortPrice) {
             if (this.sortDir) 
-            {return this.goods.sort((good1,good2)=>good1.price>good2.price ?1:-1)}
+            {return goods_new.sort((good1,good2)=>good1.price>good2.price ?1:-1)}
             else {
-                return this.goods.sort((good1,good2)=>good1.price>good2.price ?-1:1)
+                return goods_new.sort((good1,good2)=>good1.price>good2.price ?-1:1)
             }
             }
         else {
-            return this.goods
+            return goods_new
         }
     }
     add (good){
@@ -133,13 +134,12 @@ const goodsList = new GoodsList (
     sortPrice = false,
     sortDir = true
 )
-good1.setAvailable(false)
 good2.setAvailable(true)
 goodsList.add(good4)
 goodsList.remove(1)
 console.log(good1)
 console.log(good2)
-console.log(goodsList.list)
+console.log('get list',goodsList.list)
 const basketGood1 = new BasketGood(1,'qqq','description',(45,48,50),10090,true,10)
 const basketGood2 = new BasketGood(2,'ww','descriptionw',(45,48,50),1000,false,5)
 const basket = new Basket([basketGood1])
