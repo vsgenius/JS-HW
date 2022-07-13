@@ -12,14 +12,14 @@ class Good {
     }
 }
 class GoodsList {
-    constructor (goods,filter,sortPrice,sortDir){
-        this.goods = goods;
+        #goods=goods;
+    constructor (filter,sortPrice,sortDir){
         this.filter = filter;
         this.sortPrice = sortPrice;
         this.sortDir = sortDir;
     }
     get list(){
-        const goods_new = this.goods.filter((good) => good.available==true)
+            const goods_new = this.#goods.filter((good) => (good.available==true) && (good.name == filter)) 
         if (sortPrice) {
             if (this.sortDir) 
             {return goods_new.sort((good1,good2)=>good1.price>good2.price ?1:-1)}
@@ -32,10 +32,10 @@ class GoodsList {
         }
     }
     add (good){
-        this.goods.push(good)
+        this.#goods.push(good)
     }
     remove(id) {
-        delete this.goods[id]
+        this.#goods.pop(this.#goods.filter((good) => good.id==id))
     }
 }
 class BasketGood extends Good {
@@ -48,20 +48,12 @@ class Basket {
     constructor (goods) {
         this.goods = goods;
     }
-    get totalAmount() {
-        if (this.goods.lenght>1) {
-            return this.goods.reduce((good)=>good.amount+good.amount)
-        }
-        else {
-            return this.goods[0].amount
-        }
+    get totalAmount() { 
+        return this.goods.reduce((a,b)=>a.amount+b.amount) 
+
     }
     get totalSum() {
-        if (this.goods.lenght>1) {
-        return this.goods.reduce((good)=>good.price+good.price)}
-        else {
-            return this.goods[0].price
-        }
+        return this.goods.reduce((a,b)=>a.price*a.amount+b.price*b.amount)
     }
     add(good, amount)  {
         if (this.goods.indexOf(good)!=-1) {
@@ -145,6 +137,7 @@ const basketGood2 = new BasketGood(2,'ww','descriptionw',(45,48,50),1000,false,5
 const basket = new Basket([basketGood1])
 console.log(basketGood1)
 console.log(basketGood2)
+basket.add(basketGood2,5)
 console.log(basket)
 console.log('Кол-во:',basket.totalAmount)
 console.log('Сумма:',basket.totalSum)
@@ -153,7 +146,7 @@ basket.add(basketGood2,10)
 console.log(basket)
 basket.remove(basketGood1,5)
 basket.remove(basketGood2,5)
-console.log(basket)
+console.log('remove',basket)
 console.log(basket.removeUnavailable())
 basket.clear()
 console.log('Очистка',basket)
