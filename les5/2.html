@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <header class="header">
+            <div class="logo__container">
+              <a href="https://netology.ru/" class="logo__link"></a>
+            </div>
+            <h3 class="header__title">
+                Домашнее задание к занятию 1.1 «Возможности JavaScript в браузере». Игра-кликер.
+            </h3>
+        </header>
+        <main class="content">
+            <div class="card">
+                <div class="clicker">
+                    <div class="clicker__status">
+                        Всего кликов <span id="clicker__counter">0</span>
+                    </div>
+                    <img 
+                        src="https://i.postimg.cc/T1bWdf2y/1024px-Pepperidge-Farm-Nantucket-Cookie.jpg" 
+                        alt=""
+                        id="cookie"
+                        class="clicker__cookie"
+                        width="200">
+                </div>
+            </div>
+        </main>    
+    <script type="text/javascript">
+        const img = document.getElementById('cookie')
+        let i = document.getElementById('clicker__counter')
+        img.onclick = ()=>{
+            i.textContent=Number(i.textContent)+1
+            if (img.width==200) {
+                img.width+=20
+            }
+            else {
+                img.width-=20
+            }
+        }
+    </script>
+</body>
+</html>

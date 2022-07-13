@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 1</title>
+</head>
+<body>
+    <h2>До окончания конкурса осталось:<span id="number">40</span></h2>
+    <script type="text/javascript">
+            setInterval(() => {
+                if (Number(document.getElementById('number').textContent !=0)) {
+                document.getElementById('number').textContent = Number(document.getElementById('number').textContent )-1;}
+                else {
+                    return alert('Вы победили в конкурсе!')
+                }
+            },500)
+        
+    </script>
+</body>
+</html>
