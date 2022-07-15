@@ -1,9 +1,11 @@
 getHole = index => document.getElementById(`hole${index}`)
 const n = document.getElementsByClassName('hole').length
-for (i=1;i<n;i++) {
+// console.log(document.querySelectorAll('.hole-game div')[0].id)
+for (i=1;i<n;i++) (function(i){
     getHole(i).onclick = () => {
     checkClass(getHole(i).className)
-}}
+    return false
+}})(i)
 function checkWinLose ( text) {
         alert(text)
         document.getElementById(`dead`).textContent=0
