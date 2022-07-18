@@ -1,24 +1,20 @@
-function guess (number) {
-    const readline = require('readline-sync')
-    let i = 0
-    while (true) {
-        i+=1
-        console.log('Попытка:',i,'Введите число:') 
-        let numberInput = readline.question('>>')
-        if (number==numberInput){
-            return console.log('Верно. Кол-во попыток:',i)
-        }
-        else {
-            if (number>numberInput) {
-                console.log('Больше') 
+const rl = require('readline').createInterface(process.stdin,process.stdout)
+function guess (number,i=0) {
+    i+=1
+    console.log('Попытка:',i,) 
+    rl.question('Введите число:',(numberInput) => {
+            if (number==numberInput){
+                rl.close
+                return console.log('Верно. Кол-во попыток:',i)
             }
             else {
-                console.log('Меньше') 
-            }
-        }
+                if (number>numberInput) {
+                    console.log('Больше') 
+                }
+                else {
+                    console.log('Меньше') 
+                }
+                guess(number,i)
+            }})
     }
-
-}
-setTimeout(() => {
-    guess(5)
-},2000);
+guess(5)
