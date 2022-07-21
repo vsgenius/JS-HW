@@ -6,11 +6,18 @@ window.addEventListener('scroll', function() {
   });
 function isVisible(el) {
     const {top,bottom} = el.getBoundingClientRect()
-    if (bottom<0){
+    if (bottom<0 && top>0){
+        el.classList.remove('reveal_active')
+        console.log(el.classList)
+        console.log(top,bottom)
+    }
+    else {
+        el.classList.add('reveal_active')
+    }
+    if (bottom>window.innerHeight && top<window.innerHeight) {
         el.classList.remove('reveal_active')
     }
-    if (top>window.innerHeight) {
-        el.classList.remove('reveal_active')
+    else {
+        el.classList.add('reveal_active')
     }
-    el.classList.add('reveal_active')
 }
