@@ -6,7 +6,7 @@ class Game {
       this.lossElement = container.querySelector('.status__loss');
       this.timerElement = container.querySelector('.status__timer');
       this.reset();
-  
+      this.clearInterval
       this.registerEvents();
     }
   
@@ -79,13 +79,14 @@ class Game {
     }
     initializeClock(endtime) {
         this.timerElement.textContent = endtime
-        setInterval(()=> {
+        const refreshid = setInterval(()=> {
             if (Number(this.timerElement.textContent) > 0) {
                 this.timerElement.textContent=Number(this.timerElement.textContent)-1;         
             }
             else {
                 this.timerElement.textContent = 0;
                 this.fail() 
+                clearInterval(refreshid)
             }
         }, 1000);
     }
@@ -101,5 +102,4 @@ class Game {
       this.currentSymbol = this.wordElement.querySelector('.symbol_current');
     }
   }
-  
   new Game(document.getElementById('game'))
