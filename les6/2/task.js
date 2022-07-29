@@ -1,5 +1,4 @@
 const items = document.querySelectorAll('.menu__link')
-const menu_sub = document.querySelectorAll('.menu_sub')
 for (let i = 0, len = items.length; i < len; i++) {
     items[i].onclick = function() {
         if (items[i].nextElementSibling!=null) {
