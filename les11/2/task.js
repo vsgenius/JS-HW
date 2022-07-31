@@ -2,7 +2,7 @@ const req = new XMLHttpRequest()
 const title = document.querySelector('.poll__title')
 const pollAnswers = document.getElementById('poll__answers')
 req.addEventListener('readystatechange',()=>{
-    if (req.readyState==req.DONE){
+    if (req.readyState==req.DONE && req.status===200){
         const data = JSON.parse(req.responseText)['data']
         const answers = document.querySelectorAll('.poll__answer')
         if (answers != null) {
@@ -19,6 +19,7 @@ req.addEventListener('readystatechange',()=>{
             buttons[index].addEventListener('click',(e) => {
                 req.open('GET','https://netology-slow-rest.herokuapp.com/poll.php')
                 req.send()
+                alert('Спасибо, Ваш вопрос засчитан!')
             })
         }  
     }
